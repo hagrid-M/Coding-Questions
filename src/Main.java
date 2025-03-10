@@ -14,19 +14,13 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
+        int[] a = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            a[i] = sc.nextInt();
         }
-        Sorting srt = new Sorting();
-//        srt.selectionSort(arr);
-//        srt.bubbleSort(arr);
-//        srt.insertionSort(arr);
-//        srt.mergeSort(arr,n);
-//        srt.recursiveBubbleSort(arr,n);
-//        srt.recursiveInsertionSort(arr,0,n);
-//        srt.quickSort(arr, 0, n - 1);
-        printArray(arr, n);
+        Array ar = new Array();
+        System.out.println(ar.missingNumber(a));
+
 
     }
 }
