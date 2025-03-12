@@ -18,8 +18,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
         }
-        Array ar = new Array();
-        System.out.println(ar.missingNumber(a));
+        ArrayMedium ar = new ArrayMedium();
+        System.out.println(ar.maxProfit(a));
 
 
     }
