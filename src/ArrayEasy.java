@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Array {
+public class ArrayEasy {
     public void swap(int[] arr, int a, int b) {
         int temp = arr[a];
         arr[a] = arr[b];
