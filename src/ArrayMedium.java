@@ -124,58 +124,176 @@ public class ArrayMedium {
         ArrayEasy arrayEasy = new ArrayEasy();
         while (i >= 0) {
             if (nums[i] < nums[i + 1]) {
-                breakpoint = i ;
+                breakpoint = i;
                 break;
             }
             i--;
         }
         if (breakpoint == -1)
-            arrayEasy.reverseArray(nums,0,n-1);
-        for(i=n-1;i>=0;i--){
-            if(nums[i]>nums[breakpoint]){
+            arrayEasy.reverseArray(nums, 0, n - 1);
+        for (i = n - 1; i >= 0; i--) {
+            if (nums[i] > nums[breakpoint]) {
                 int temp = nums[i];
-                nums[i]= nums[breakpoint];
-                nums[breakpoint]=temp;
+                nums[i] = nums[breakpoint];
+                nums[breakpoint] = temp;
                 break;
             }
         }
-        arrayEasy.reverseArray(nums,breakpoint+1,n-1);
+        arrayEasy.reverseArray(nums, breakpoint + 1, n - 1);
     }
+
     public ArrayList<Integer> leaders(int[] arr) {
         // code here
-        int n =  arr.length;
+        int n = arr.length;
         ArrayList<Integer> result = new ArrayList<>();
-        int maxTillNow = arr[n-1];
-        for(int i=n-1; i>=0;i--){
-            maxTillNow =Math.max(maxTillNow,arr[i]);
-            if(maxTillNow == arr[i])
+        int maxTillNow = arr[n - 1];
+        for (int i = n - 1; i >= 0; i--) {
+            maxTillNow = Math.max(maxTillNow, arr[i]);
+            if (maxTillNow == arr[i])
                 result.add(arr[i]);
         }
         Collections.reverse(result);
         return result;
     }
+
     public int longestConsecutive(int[] nums) {
-        int n =nums.length;
+        int n = nums.length;
         int maxLength = 1;
-        if(n==0)
+        if (n == 0)
             return 0;
         HashSet<Integer> set = new HashSet<>();
-        for(int elem : nums){
+        for (int elem : nums) {
             set.add(elem);
         }
 
-        for(int elem : set){
-            int tempCount=1;
-            if(!set.contains(elem-1)){
+        for (int elem : set) {
+            int tempCount = 1;
+            if (!set.contains(elem - 1)) {
                 int i = 1;
-                while(set.contains(elem+i)){
+                while (set.contains(elem + i)) {
                     tempCount++;
                     i++;
                 }
             }
-            maxLength=Math.max(tempCount,maxLength);
+            maxLength = Math.max(tempCount, maxLength);
         }
         return maxLength;
+
+    }
+
+    public void setZeroes(int[][] matrix) {
+        int col0 = 1;
+        int n = matrix[0].length;
+        int m = matrix.length;
+        if (matrix[0][0] == 0) {
+            col0 = 0;
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    if (j == 0)
+                        col0 = 0;
+                    else
+                        matrix[0][j] = 0;
+                    matrix[i][0] = 0;
+                }
+            }
+        }
+        for (int i = m - 1; i > 0; i--) {
+            for (int j = n - 1; j > 0; j--) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    matrix[i][j] = 0;
+            }
+        }
+        for (int j = n - 1; j > 0; j--)
+            if (matrix[0][0] == 0 || matrix[0][j] == 0)
+                matrix[0][j] = 0;
+
+        for (int i = 0; i < m; i++)
+            if (matrix[i][0] == 0 || col0 == 0)
+                matrix[i][0] = 0;
+
+    }
+
+    public void rotate(int[][] matrix) {
+        //clockwise 90 degree
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        for (int i = 0; i < rows; i++) {
+            for (int j = i; j < columns; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][rows - j - 1];
+                matrix[i][rows - j - 1] = temp;
+            }
+        }
+
+    }
+
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> spiral = new ArrayList<>();
+        int top = 0;
+        int left = 0;
+        int bottom = matrix.length - 1;
+        int right = matrix[0].length - 1;
+        while (top <= bottom && left <= right) {
+            //left to right
+            for (int i = left; i <= right; i++) {
+                spiral.add(matrix[top][i]);
+            }
+            top++;
+            //top to bottom
+            for (int i = top; i <= bottom; i++) {
+                spiral.add(matrix[i][right]);
+
+            }
+            right--;
+
+            //right to left
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    spiral.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            //bottom to top
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    spiral.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return spiral;
+
+    }
+
+    public int subarraySum(int[] nums, int k) {
+        int result = 0;
+        HashMap<Integer,Integer> prefixSum = new HashMap<>();
+        int sum = 0;
+        prefixSum.put(0,1);
+        for (int num : nums) {
+            sum += num;
+            if (prefixSum.containsKey(sum-k)){
+                result+=prefixSum.get(sum-k);
+                prefixSum.put(sum, prefixSum.get(sum)+1);
+
+            }
+            else if(prefixSum.containsKey(sum)){
+                prefixSum.put(sum,prefixSum.get(sum)+1);
+            }
+            else
+                prefixSum.put(sum,1);
+        }
+        return result;
 
     }
 }
