@@ -1,3 +1,4 @@
+
 public class BinarySearch {
     private int calculateHours(int[] piles, int k) {
         int count = 0;
@@ -122,6 +123,4 @@ public class BinarySearch {
         return low;
 
     }
-
-
 }

@@ -1,4 +1,6 @@
+
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -34,6 +36,7 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         Scanner sc = new Scanner(System.in);
+
         int m = sc.nextInt();
         int[] arr1 = new int[m ];
         for (int i = 0; i < m; i++) {
