@@ -185,32 +185,5 @@ public class ArrayHard {
         return result;
     }
 
-//    public void mergeSortedArrays(int[] nums1, int m, int[] nums2, int n) {
-//        int j = m + n - 1;
-//        int arr2 = 0;
-//        int index = 0;
-//        int arr1 = 0;
-//
-//        while (arr1 < m && arr2 < n) {
-//            if (nums1[index] > nums2[arr2]) {
-//                nums1[j] = nums1[index];
-//                nums1[index] = nums2[arr2];
-//                arr2++;
-//            } else {
-//                arr1++;
-//            }
-//            index++;
-//        }
-//        while (arr2<n){
-//            nums1[index] = nums2[arr2];
-//            arr2++;
-//            index++;
-//        }
-//
-//        if (j < m + n - 1) {
-//            ArrayEasy arEsy = new ArrayEasy();
-//            arEsy.reverseArray(nums1, j + 1, m + n - 1);
-//        }
-//
-//    }
+
 }
