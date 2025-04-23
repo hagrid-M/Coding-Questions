@@ -35,77 +35,10 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         Scanner sc = new Scanner(System.in);
         int m = sc.nextInt();
-        int n = sc.nextInt();
-        int[] arr1 = new int[m + n];
-        int[] arr2 = new int[n];
-        Arrays.fill(arr1, 0);
+        int[] arr1 = new int[m ];
         for (int i = 0; i < m; i++) {
             arr1[i] = sc.nextInt();
         }
-        for (int i = 0; i < n; i++) {
-            arr2[i] = sc.nextInt();
-        }
-//        int target = sc.nextInt();
-        ArrayHard ar = new ArrayHard();
-//        ar.mergeSortedArrays(arr1,m,arr2,n);
-        printArray(arr1, m + n);
-
-    }
-
-    public ArrayList<Integer> findTwoElement(int a[]) {
-        // code here
-        ArrayList<Integer> result = new ArrayList<>();
-        int n = a.length; // size of the array
-        int xr = 0;
-
-        //Step 1: Find XOR of all elements:
-        for (int i = 0; i < n; i++) {
-            xr = xr ^ a[i];
-            xr = xr ^ (i + 1);
-        }
-
-        //Step 2: Find the differentiating bit number:
-        int number = (xr & ~(xr - 1));
-
-        //Step 3: Group the numbers:
-        int zero = 0;
-        int one = 0;
-        for (int i = 0; i < n; i++) {
-            //part of 1 group:
-            if ((a[i] & number) != 0) {
-                one = one ^ a[i];
-            }
-            //part of 0 group:
-            else {
-                zero = zero ^ a[i];
-            }
-        }
-
-        for (int i = 1; i <= n; i++) {
-            //part of 1 group:
-            if ((i & number) != 0) {
-                one = one ^ i;
-            }
-            //part of 0 group:
-            else {
-                zero = zero ^ i;
-            }
-        }
-
-        // Last step: Identify the numbers:
-        int cnt = 0;
-        for (int i = 0; i < n; i++) {
-            if (a[i] == zero) cnt++;
-        }
-
-        if (cnt == 2) {
-            result.add(zero);
-            result.add(one);
-        } else {
-            result.add(one);
-            result.add(zero);
-
-        }
-        return result;
+        int h = sc.nextInt();
     }
 }
