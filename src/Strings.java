@@ -48,11 +48,30 @@ public class Strings {
         Arrays.sort(strs);
         int length_first = strs[0].length();
         int length_last=strs[length-1].length();
-       for(int i=0;i<length_first;i++){
-           if(i>length_last || strs[0].charAt(i)!=strs[length-1].charAt(i))
-               return strs[0].substring(0,i);
+       StringBuilder sb = new StringBuilder();
+       for(int i =0; i<length_first && i<length_last;i++){
+           if(strs[0].charAt(i)==strs[length-1].charAt(i))
+               sb.append(strs[0].charAt(i));
+           else
+               break;
        }
-       return "";
+       return sb.toString();
+    }
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length())
+            return false;
+        if(s.equals(t))
+            return true;
+        int [] frequency = new int[26];
+        int length = s.length();
+        for(int i=0;i<length;i++){
+            frequency[s.charAt(i)-'a']++;
+            frequency[t.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++)
+            if(frequency[i]!=0)
+                return false;
+        return true;
 
     }
 
