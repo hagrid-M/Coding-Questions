@@ -38,10 +38,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int m = sc.nextInt();
-        int[] arr1 = new int[m ];
-        for (int i = 0; i < m; i++) {
-            arr1[i] = sc.nextInt();
-        }
-        int h = sc.nextInt();
+       Recursion recursion = new Recursion();
+       System.out.println(recursion.generateParenthesis(m));
     }
 }
