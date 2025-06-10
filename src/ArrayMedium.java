@@ -66,7 +66,7 @@ public class ArrayMedium {
         return maxSum;
     }
 
-    public int pairWithMaxSum(int arr[]) {
+    public int pairWithMaxSum(int[] arr) {
         // Your code goes here
         int n = arr.length;
         if (n == 2)
