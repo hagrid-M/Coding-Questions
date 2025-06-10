@@ -96,7 +96,7 @@ public class Sorting {
         Main.printArray(arr, n);
     }
 
-    public void recursiveBubbleSort(int arr[], int n) {
+    public void recursiveBubbleSort(int[] arr, int n) {
         if (n == 1)
             return;
         for (int i = 0; i <= n - 2; i++) {
@@ -106,7 +106,7 @@ public class Sorting {
         recursiveBubbleSort(arr, n - 1);
     }
 
-    public void recursiveInsertionSort(int arr[], int i, int n) {
+    public void recursiveInsertionSort(int[] arr, int i, int n) {
         if (i == n)
             return;
         int j = i;

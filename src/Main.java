@@ -37,8 +37,16 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         Scanner sc = new Scanner(System.in);
 
-        int m = sc.nextInt();
-       Recursion recursion = new Recursion();
-       System.out.println(recursion.generateParenthesis(m));
+       int n = sc.nextInt();
+       int m = sc.nextInt();
+       char[][] nums = new char[n][m];
+       for(int i =0 ;i<n;i++){
+           for(int j=0;j<m;j++){
+               nums[i][j]= sc.next().charAt(0);
+           }
+
+       }
+       Stacks st = new Stacks();
+       System.out.println(st.maximalRectangle(nums));
     }
 }

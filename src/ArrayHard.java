@@ -55,7 +55,7 @@ public class ArrayHard {
             if (j == el2) cnt2++;
         }
 
-        int mini = (int) (n / 3) + 1;
+        int mini = (n / 3) + 1;
         if (cnt1 >= mini) ls.add(el1);
         if (cnt2 >= mini) ls.add(el2);
 
@@ -139,7 +139,7 @@ public class ArrayHard {
 
     }
 
-    public int maxLen(int nums[]) {
+    public int maxLen(int[] nums) {
         // code here
         int result = 0;
         HashMap<Integer, Integer> prefixSum = new HashMap<>();

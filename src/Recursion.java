@@ -69,7 +69,7 @@ public class Recursion {
         result.clear();
        return fibonacciHelper(n,0,1);
     }
-    private long mod = 1_000_000_007;
+    private final long mod = 1_000_000_007;
     public int countGoodNumbers(long n) {
         long even = (n+1)/2;
         long odd = n /2;
@@ -161,7 +161,8 @@ public class Recursion {
 
     }
     private void backtrack2(List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start){
-        if(remain < 0) return;
+        if(remain < 0) {
+        }
         else if(remain == 0) list.add(new ArrayList<>(tempList));
         else{
             for(int i = start; i < nums.length; i++){
@@ -174,7 +175,8 @@ public class Recursion {
     }
 
     private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start){
-        if(remain < 0) return;
+        if(remain < 0) {
+        }
         else if(remain == 0) list.add(new ArrayList<>(tempList));
         else{
             for(int i = start; i < nums.length; i++){
