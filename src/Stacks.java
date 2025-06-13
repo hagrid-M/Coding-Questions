@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class Stacks {
     public boolean isValid(String s) {
@@ -255,36 +253,37 @@ public class Stacks {
         Stack<Integer> st = new Stack<>();
         for (int i = 0; i < length; i++) {
             int curr = heights[i];
-            while(!st.isEmpty() && heights[st.peek()]> curr){
+            while (!st.isEmpty() && heights[st.peek()] > curr) {
                 int element = heights[st.pop()];
                 int nse = i;
-                int pse = st.isEmpty()? -1 : st.peek();
-                maxArea = Math.max(maxArea,(nse-pse-1)*element);
+                int pse = st.isEmpty() ? -1 : st.peek();
+                maxArea = Math.max(maxArea, (nse - pse - 1) * element);
             }
             st.push(i);
         }
-        while(!st.isEmpty()){
+        while (!st.isEmpty()) {
             int element = heights[st.pop()];
-            int pse = st.isEmpty()?-1:st.peek();
-            maxArea = Math.max(maxArea, (length-pse-1)*element);
+            int pse = st.isEmpty() ? -1 : st.peek();
+            maxArea = Math.max(maxArea, (length - pse - 1) * element);
         }
         return maxArea;
     }
+
     public int maximalRectangle(char[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
         int maxRectangle = 0;
         int[][] prefixSum = new int[row][col];
-        for(int i =0;i<col;i++){
-            prefixSum[0][i]=(int) matrix[0][i]-'0';
+        for (int i = 0; i < col; i++) {
+            prefixSum[0][i] = (int) matrix[0][i] - '0';
         }
-        for(int i =1;i<row;i++){
-            for(int j =0;j<col;j++){
-                prefixSum[i][j] = (matrix[i][j] == '0') ? matrix[i][j]-'0' : prefixSum[i-1][j]+1;
+        for (int i = 1; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                prefixSum[i][j] = (matrix[i][j] == '0') ? matrix[i][j] - '0' : prefixSum[i - 1][j] + 1;
             }
         }
-        for(int i = 0 ;i<row;i++){
-            maxRectangle =Math.max(maxRectangle,largestRectangleArea(prefixSum[i]));
+        for (int i = 0; i < row; i++) {
+            maxRectangle = Math.max(maxRectangle, largestRectangleArea(prefixSum[i]));
         }
         return maxRectangle;
 
@@ -327,5 +326,78 @@ class MinStack {
 
     public int getMin() {
         return st.peek().y;
+    }
+}
+class StockSpanner {
+    Stack<int[]> st;
+    public StockSpanner() {
+        st = new Stack<>();
+
+    }
+
+    public int next(int price) {
+        int span =1;
+        while (!st.isEmpty() && st.peek()[0] <= price){
+            span+=st.peek()[1];
+            st.pop();
+        }
+        st.push(new int[]{price,span});
+        return span;
+    }
+}
+
+class LRUCache {
+    Node head = new Node(0, 0), tail = new Node(0, 0);
+    Map < Integer, Node > map = new HashMap();
+    int capacity;
+
+    public LRUCache(int _capacity) {
+        capacity = _capacity;
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public int get(int key) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            remove(node);
+            insert(node);
+            return node.value;
+        } else {
+            return -1;
+        }
+    }
+
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            remove(map.get(key));
+        }
+        if (map.size() == capacity) {
+            remove(tail.prev);
+        }
+        insert(new Node(key, value));
+    }
+
+    private void remove(Node node) {
+        map.remove(node.key);
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void insert(Node node) {
+        map.put(node.key, node);
+        node.next = head.next;
+        node.next.prev = node;
+        head.next = node;
+        node.prev = head;
+    }
+
+    class Node {
+        Node prev, next;
+        int key, value;
+        Node(int _key, int _value) {
+            key = _key;
+            value = _value;
+        }
     }
 }
