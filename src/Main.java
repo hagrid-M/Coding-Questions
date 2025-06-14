@@ -41,6 +41,7 @@ public class Main {
 //        String s = sc.nextLine();
 //        String t = sc.nextLine();
         GreedyAlgorithm ga = new GreedyAlgorithm();
-        System.out.println(ga.jump(nums));
+//        DailyProblems dlyp = new DailyProblems();
+        System.out.println(ga.candy(nums));
     }
 }
